@@ -21,7 +21,7 @@ class DefaultController extends Controller
         // einde service
 
         if ($sftp_login) {
-            $dir = '/var/www/html/test';
+            $dir = $this->container->getParameter('ftp_serverpath');
             $rawlist = $sftp->rawlist($dir);
         }
 

@@ -22,3 +22,4 @@ parameters:
     ftp_host: ~
     ftp_user: ~
     ftp_password: ~
+    ftp_serverpath: /var/www/html/test

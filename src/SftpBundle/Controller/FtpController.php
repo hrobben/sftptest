@@ -34,9 +34,9 @@ class FtpController extends Controller
 
         if ($sftp_login) {
 
-            $dir = $sftp->exec('cd /var/www/html/test; ls -la');
+            $dir = $sftp->exec('cd '.$this->container->getParameter('ftp_serverpath').'; ls -la');
 
-            $cdir = $sftp->chdir('/var/www/html/test');
+            $cdir = $sftp->chdir($this->container->getParameter('ftp_serverpath'));
 
             $nlist = $sftp->nlist();
 
@@ -62,7 +62,7 @@ class FtpController extends Controller
                     'path' => $sftp->exec('pwd'),
                     'dir' => $dir,
                     'cdir' => $cdir,
-                    'cd' => '/var/www/html/test',
+                    'cd' => $this->container->getParameter('ftp_serverpath'),
                     'nlist' => $nlist,
                     'counts' => $counts,
                 ));
@@ -87,9 +87,9 @@ class FtpController extends Controller
 
         if ($sftp_login) {
 
-            $dir = $sftp->exec('cd /var/www/html/test; ls -la');
+            $dir = $sftp->exec('cd '.$this->container->getParameter('ftp_serverpath').'; ls -la');
 
-            $cdir = $sftp->chdir('/var/www/html/test/backup');
+            $cdir = $sftp->chdir($this->container->getParameter('ftp_serverpath').'/backup');
 
             $nlist = $sftp->nlist();
 
@@ -113,7 +113,7 @@ class FtpController extends Controller
                     'path' => $sftp->exec('pwd'),
                     'dir' => $dir,
                     'cdir' => $cdir,
-                    'cd' => '/var/www/html/test/backup',
+                    'cd' => $this->container->getParameter('ftp_serverpath').'/backup',
                     'nlist' => $nlist,
                     'counts' => $counts,
                 ));
