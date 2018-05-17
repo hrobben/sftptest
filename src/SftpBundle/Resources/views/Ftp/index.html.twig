@@ -1,0 +1,38 @@
+{% extends '@Sftp/base.html.twig' %}
+
+{% block body %}
+    <h1>SFTP folder</h1>
+
+    <p>Succesfull login => position (pwd) = {{ path }}</p>
+
+    {% if (cdir == 0) %}
+        <p>chdir not executed to {{ cd }}</p>
+    {% else %}
+        <p>chdir executed to {{ cd }}</p>
+    {% endif %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>File</th>
+            <th>Rows</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in nlist %}
+            <tr>
+                <td>{{ file }}</td>
+                <td>{% if (counts[file]) %}{{ counts[file] }}{% else %}0{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{#
+    debugging>>>>>>>
+    <h4>Directory list before Bulk Transaction.(debug)</h4>
+    {{ dump(dir) }}
+
+#}
+
+{% endblock %}
